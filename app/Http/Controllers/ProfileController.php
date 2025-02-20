@@ -48,6 +48,8 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        $user->restaurants()->detach();
+
         Auth::logout();
 
         $user->delete();

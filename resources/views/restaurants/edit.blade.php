@@ -12,24 +12,6 @@
                             @csrf
                             @method('PUT')  <!-- For PUT method to update -->
 
-                            <!-- Name Field -->
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $restaurant->name) }}" required>
-                                @error('name')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <!-- Address Field -->
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <textarea name="address" class="form-control @error('address') is-invalid @enderror" required>{{ old('address', $restaurant->address) }}</textarea>
-                                @error('address')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
                             <!-- Branch Code Field -->
                             <div class="form-group">
                                 <label for="branch_code">Branch Code</label>
@@ -38,6 +20,24 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            <!-- Name Field -->
+                            <div class="form-group">
+                                <label for="name">Branch Name</label>
+                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $restaurant->name) }}" required>
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Address Field -->
+                            {{-- <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea name="address" class="form-control @error('address') is-invalid @enderror" required>{{ old('address', $restaurant->address) }}</textarea>
+                                @error('address')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div> --}}
 
                             <button type="submit" class="btn btn-success">Update</button>
                         </form>
