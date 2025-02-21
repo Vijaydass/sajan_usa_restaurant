@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LatestUpdateController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\UserController;
@@ -28,6 +29,10 @@ Route::middleware('auth')->group(function () {
         $updates = LatestUpdate::latest()->take(5)->get(); // Get the 5 latest updates
         return view('dashboard', compact('updates'));
     })->middleware(['auth', 'verified'])->name('dashboard');
+
+    Route::post('/payroll', [PayrollController::class, 'store'])->name('payroll.store');
+    Route::get('/payroll/fetch', [PayrollController::class, 'fetchPayroll'])->name('payroll.fetch');
+    Route::get('/payroll/export', [PayrollController::class, 'exportPayroll'])->name('payroll.export');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

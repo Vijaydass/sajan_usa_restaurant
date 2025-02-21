@@ -87,7 +87,125 @@
             </div>
         </div>
 
-        <!-- Maintenance Modal -->
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="page-header d-flex justify-content-between align-items-center">
+                            <h3 class="page-title"> Payroll Details with Date Range </h3>
+                            <button type="button" class="btn btn-success btn-sm" id="export_excel">
+                                Export to Excel
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Start Date:</label>
+                                    <input type="date" id="filter_start_date" class="form-control p-2">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>End Date:</label>
+                                    <input type="date" id="filter_end_date" class="form-control p-2">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button class="btn btn-primary w-100 btn-sm" id="search_payroll">Fetch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-responsive table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>@sortablelink('name', 'Crew Member')</th>
+                                        <th>@sortablelink('wk1_hrs', 'Week 1 (Input Hrs)')</th>
+                                        <th>@sortablelink('wk2_hrs', 'Week 2 (Input Hrs)')</th>
+                                        <th>@sortablelink('total_hrs', 'Total')</th>
+                                        <th>@sortablelink('ot_wk1_hrs', 'OT WK 1')</th>
+                                        <th>@sortablelink('ot_wk2_hrs', 'OT WK 2')</th>
+                                        <th>@sortablelink('total_ot_hrs', 'Total OT')</th>
+                                        <th>@sortablelink('pay_rate', 'Pay Rate')</th>
+                                        <th>@sortablelink('ot_rate', 'OT Rate')</th>
+                                        <th>@sortablelink('total_pay', 'Total')</th>
+                                    </tr>
+                                    <form id="payrollFilterForm">
+                                        <input type="hidden" id="table_sort" name="sort">
+                                        <input type="hidden" id="table_order" name="order">
+                                        <input type="hidden" id="total_records" name="total_records">
+                                        <tr>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Crew Member" name="name" type="text" value="{{ request('name', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Week 1 Hrs" name="wk1_hrs" type="number" value="{{ request('wk1_hrs', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Week 2 Hrs" name="wk2_hrs" type="number" value="{{ request('wk2_hrs', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Total Hrs" name="total_hrs" type="number" value="{{ request('total_hrs', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="OT Week 1 Hrs" name="ot_wk1_hrs" type="number" value="{{ request('ot_wk1_hrs', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="OT Week 2 Hrs" name="ot_wk2_hrs" type="number" value="{{ request('ot_wk2_hrs', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Total OT Hrs" name="total_ot_hrs" type="number" value="{{ request('total_ot_hrs', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Pay Rate" name="pay_rate" type="number" step="0.01" value="{{ request('pay_rate', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="OT Rate" name="ot_rate" type="number" step="0.01" value="{{ request('ot_rate', '') }}" />
+                                            </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Total Pay" name="total_pay" type="number" step="0.01" value="{{ request('total_pay', '') }}" />
+                                            </th>
+                                        </tr>
+                                    </form>
+                                </thead>
+                                <tbody id="payroll_table_body">
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-bordered mt-4">
+                            <thead>
+                                <tr>
+                                    <th>Summary</th>
+                                    <th><strong>Wk1 Hrs</strong></th>
+                                    <th><strong>Wk2 Hrs</strong></th>
+                                    <th><strong>Hours</strong></th>
+                                    <th><strong>OT WK1</strong></th>
+                                    <th><strong>OT WK2</strong></th>
+                                    <th><strong>OT Hours</strong></th>
+                                    <th><strong>Pay</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th></th>
+                                    <th id="total_wk1_hrs"></th>
+                                    <th id="total_wk2_hrs"></th>
+                                    <th id="total_hours"></th>
+                                    <th id="total_ot_wk1"></th>
+                                    <th id="total_ot_wk2"></th>
+                                    <th id="total_ot_hours"></th>
+                                    <th id="total_pay"></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Employee Modal -->
         <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -201,8 +319,7 @@
             </div>
         </div>
 
-
-        <!-- Edit Maintenance Modal -->
+        <!-- Add Payroll Modal -->
         <div class="modal fade" id="addPayrollModal" tabindex="-1" aria-labelledby="addPayrollModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
@@ -289,12 +406,12 @@
     @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-        $('.input-filter').change(function() {
-            $('#filterForm').submit();
-        });
-
         $(document).ready(function () {
-            // Open modal for adding new employee
+
+            $('.input-filter').change(function() {
+                $('#filterForm').submit();
+            });
+
             $('#employeeModal').on('show.bs.modal', function () {
                 $('#employeeForm')[0].reset(); // Reset the form
                 $('.invalid-feedback').text(''); // Clear error messages
@@ -345,55 +462,7 @@
                     }
                 });
             });
-        });
 
-        $(document).ready(function () {
-            $("#maintenanceForm").submit(function (e) {
-                e.preventDefault();
-
-                // Clear previous error messages
-                $(".invalid-feedback").text("");
-                $(".form-control").removeClass("is-invalid");
-
-                let formData = {
-                    branch_code: $("#branch_code").val(),
-                    equipment_name: $("#equipment_name").val(),
-                    payment_type: $("#payment_type").val(),
-                    reason: $("#reason").val(),
-                    status: $("#status").val(),
-                    _token: "{{ csrf_token() }}" // CSRF token for Laravel
-                };
-
-                $.ajax({
-                    url: "{{ route('maintenances') }}",
-                    type: "POST",
-                    data: formData,
-                    success: function (response) {
-                        if (response.success) {
-                            toastr.success('Maintenance record added successfully!', 'Success', { timeOut: 3000 });
-                            $("#maintenanceModal").modal("hide");
-                            $("#maintenanceForm")[0].reset(); // Reset form fields
-                            setTimeout(() => location.reload(), 2000);
-                        } else {
-                            toastr.error('Something went wrong!', 'Error', { timeOut: 5000 });
-                        }
-                    },
-                    error: function (xhr) {
-                        if (xhr.status === 422) {
-                            let errors = xhr.responseJSON.errors;
-                            $.each(errors, function (key, value) {
-                                $("#" + key).addClass("is-invalid");
-                                $("#" + key + "_error").text(value[0]);
-                            });
-                        } else {
-                            toastr.error('An unexpected error occurred.', 'Error', { timeOut: 5000 });
-                        }
-                    }
-                });
-            });
-        });
-
-        $(document).ready(function () {
             // Open edit modal & populate fields
             $(".addPayroll").click(function () {
                 let employee = $(this).data();
@@ -412,43 +481,110 @@
                 $(".invalid-feedback").text(""); // Clear error messages
                 $(".form-control").removeClass("is-invalid");
 
-                let maintenanceId = $("#edit_maintenance_id").val();
                 let formData = {
-                    maintenance_id: maintenanceId,
-                    equipment_name: $("#edit_equipment_name").val(),
-                    payment_type: $("#edit_payment_type").val(),
-                    reason: $("#edit_reason").val(),
-                    status: $("#edit_status").val(),
+                    employee_id: $("#add_employee_id").val(),
+                    start_date: $("#add_payroll_start_date").val(),
+                    end_date: $("#add_payroll_end_date").val(),
+                    wk1_hrs: $("#add_payroll_wk1_hrs").val(),
+                    wk2_hrs: $("#add_payroll_wk2_hrs").val(),
+                    ot_wk1_hrs: $("#add_payroll_ot_wk1_hrs").val(),
+                    ot_wk2_hrs: $("#add_payroll_ot_wk2_hrs").val(),
                     _token: "{{ csrf_token() }}"
                 };
 
                 $.ajax({
-                    url: "/maintenances/" + maintenanceId,
-                    type: "PUT",
+                    url: "{{ route('payroll.store') }}",
+                    type: "POST",
                     data: formData,
                     success: function (response) {
-                        if (response.success) {
-                            toastr.success('Maintenance updated successfully!', 'Success', { timeOut: 3000 });
+                        if (response.message) {
+                            toastr.success(response.message, 'Success', { timeOut: 3000 });
                             $("#addPayrollModal").modal("hide");
                             $("#addPayrollForm")[0].reset(); // Reset form fields
-                            setTimeout(() => location.reload(), 2000);
                         } else {
                             toastr.error('Something went wrong!', 'Error', { timeOut: 5000 });
                         }
                     },
                     error: function (xhr) {
                         if (xhr.status === 422) {
-                            let errors = xhr.responseJSON.errors;
-                            $.each(errors, function (key, value) {
-                                $("#edit_" + key).addClass("is-invalid");
-                                $("#edit_" + key + "_error").text(value[0]);
-                            });
+                            let response = xhr.responseJSON;
+                            if (response.status === "error") {
+                                toastr.error(response.message, "Error", { timeOut: 5000 });
+                            } else {
+                                let errors = response.errors;
+                                $.each(errors, function (key, value) {
+                                    $("#add_payroll_" + key).addClass("is-invalid");
+                                    $("#add_payroll_" + key + "_error").text(value[0]);
+                                });
+                            }
                         } else {
-                            toastr.error('An unexpected error occurred.', 'Error', { timeOut: 5000 });
+                            toastr.error("An unexpected error occurred.", "Error", { timeOut: 5000 });
                         }
                     }
                 });
             });
+
+
+            $("#search_payroll").click(function () {
+                let startDate = $("#filter_start_date").val();
+                let endDate = $("#filter_end_date").val();
+
+                if (!startDate || !endDate) {
+                    toastr.error('Please select both start and end dates.', 'Error', { timeOut: 5000 });
+                    return;
+                }
+
+                $.ajax({
+                    url: "{{ route('payroll.fetch') }}",
+                    method: "GET",
+                    data: { start_date: startDate, end_date: endDate },
+                    success: function (response) {
+                        let tbody = $("#payroll_table_body");
+                        tbody.empty();
+
+                        if (response.length === 0) {
+                            tbody.append("<tr><td colspan='12' class='text-center'>No records found</td></tr>");
+                            return;
+                        }
+
+                        $.each(response.payrolls, function (index, payroll) {
+                            tbody.append(`
+                                <tr>
+                                    <td>${payroll.employee.name}</td>
+                                    <td>${payroll.wk1_hrs}</td>
+                                    <td>${payroll.wk2_hrs}</td>
+                                    <td>${payroll.total_hrs}</td>
+                                    <td>${payroll.ot_wk1_hrs}</td>
+                                    <td>${payroll.ot_wk2_hrs}</td>
+                                    <td>${payroll.total_ot_hrs}</td>
+                                    <td>${payroll.pay_rate}</td>
+                                    <td>${payroll.ot_rate}</td>
+                                    <td>${payroll.total_pay}</td>
+                                </tr>
+                            `);
+                        });
+                        $("#total_wk1_hrs").text(response.summary.total_wk1_hrs);
+                        $("#total_wk2_hrs").text(response.summary.total_wk2_hrs);
+                        $("#total_hours").text(response.summary.total_hours);
+                        $("#total_ot_wk1").text(response.summary.total_ot_wk1);
+                        $("#total_ot_wk2").text(response.summary.total_ot_wk2);
+                        $("#total_ot_hours").text(response.summary.total_ot_hours);
+                        $("#total_pay").text(response.summary.total_pay);
+
+                    }
+                });
+            });
+
+            $("#export_excel").click(function () {
+                let startDate = $("#filter_start_date").val();
+                let endDate = $("#filter_end_date").val();
+                if (!startDate || !endDate) {
+                    toastr.error('Please select start and end date before exporting.', 'Error', { timeOut: 5000 });
+                    return;
+                }
+                window.location.href = "{{ route('payroll.export') }}?start_date=" + startDate + "&end_date=" + endDate;
+            });
+
         });
 
     </script>

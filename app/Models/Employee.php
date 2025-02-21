@@ -17,4 +17,9 @@ class Employee extends Model
 
     public $sortable = ['name', 'email', 'designation', 'address', 'ssn', 'pay_rate',
         'dob', 'routing_number', 'account_number', 'bank', 'mobile', 'start_date'];
+
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class);
+    }
 }
