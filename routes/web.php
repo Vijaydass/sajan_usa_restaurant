@@ -5,6 +5,7 @@ use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WeeklyMetricController;
 use App\Models\LatestUpdate;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/employee/{restaurant}', [RestaurantController::class, 'employee'])->name('restaurant.employees');
     Route::post('/employee', [RestaurantController::class, 'employeeStore'])->name('employees.store');
+
+    Route::get('/metrics', [WeeklyMetricController::class, 'index'])->name('metrics.index');
+    Route::post('/metrics', [WeeklyMetricController::class, 'store'])->name('metrics.store');
+    Route::get('/download-metrics', [WeeklyMetricController::class, 'downloadCSV'])->name('metrics.download');
+
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
