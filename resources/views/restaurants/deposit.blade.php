@@ -70,6 +70,7 @@
                                         <th>@sortablelink('actual_deposit', 'Actual Deposit')</th>
                                         <th>@sortablelink('shortage', 'Shortage')</th>
                                         <th>@sortablelink('comments', 'Comments')</th>
+                                        <th>@sortablelink('deposited_by', 'Deposited by')</th>
                                         <th>Update</th>
                                     </tr>
                                     <form id="filterForm">
@@ -92,6 +93,9 @@
                                             <th class="px-1 py-2">
                                                 <input class="input-filter form-control p-2" placeholder="Comments" name="comments" type="text" value="{{ request('comments', '') }}" />
                                             </th>
+                                            <th class="px-1 py-2">
+                                                <input class="input-filter form-control p-2" placeholder="Deposited by" name="deposited_by" type="text" value="{{ request('deposited_by', '') }}" />
+                                            </th>
                                             <th></th>
                                         </tr>
                                     </form>
@@ -99,17 +103,19 @@
                                 <tbody>
                                     @foreach($deposites as $deposit)
                                         <tr>
-                                            <td>{{ $deposit->created_at->format('d-m-Y H:i:s') }}</td>
+                                            <td>{{ $deposit->created_at->format('d-m-Y') }}</td>
                                             <td>{{ $deposit->expected_deposit }}</td>
                                             <td>{{ $deposit->actual_deposit }}</td>
                                             <td>{{ $deposit->shortage }}</td>
                                             <td>{{ ucfirst($deposit->comments) }}</td>
+                                            <td>{{ ucfirst($deposit->deposited_by) }}</td>
                                             <td>
                                                 <button class="btn btn-warning btn-sm editDeposit"
                                                     data-id="{{ $deposit->id }}"
                                                     data-expected_deposit="{{ $deposit->expected_deposit }}"
                                                     data-actual_deposit="{{ $deposit->actual_deposit }}"
                                                     data-comments="{{ $deposit->comments }}"
+                                                    data-deposited_by="{{ $deposit->deposited_by }}"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#editDepositModal">
                                                     <i class="mdi mdi-pencil"></i>
@@ -124,6 +130,7 @@
                                         <th>Total Expected Deposit : <span id="total_expected_deposit">{{$total_expected}}</span></th>
                                         <th>Total Actual Deposit : <span id="total_actual_deposit">{{$total_actual}}</span></th>
                                         <th>Total Shortage : <span id="total_shortage">{{$total_shortage}}</span></th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -158,6 +165,10 @@
                             <div class="mb-3">
                                 <label for="comments" class="form-label">Comments</label>
                                 <textarea class="form-control" id="comments" rows="3" placeholder="Enter any comments"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deposit_by" class="form-label">Deposited by</label>
+                                <input type="text" class="form-control" id="deposited_by" placeholder="Enter deposited by" required>
                             </div>
                         </form>
                     </div>
@@ -196,6 +207,16 @@
                                 <textarea class="form-control" id="edit_comments" name="comments"></textarea>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="edit_date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="edit_date" name="created_at">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="edit_comments" class="form-label">Deposited By</label>
+                                <input type="text" class="form-control" id="edit_deposited_by" name="deposited_by">
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Update Deposit</button>
                         </form>
                     </div>
@@ -228,6 +249,7 @@
                 branch_code: document.getElementById('branch_code').value,
                 expected_deposit: document.getElementById('expected_deposit').value,
                 actual_deposit: document.getElementById('actual_deposit').value,
+                deposited_by: document.getElementById('deposited_by').value,
                 comments: document.getElementById('comments').value
             };
 
@@ -261,6 +283,8 @@
                 $("#edit_deposit_id").val($(this).data("id"));
                 $("#edit_expected_deposit").val($(this).data("expected_deposit"));
                 $("#edit_actual_deposit").val($(this).data("actual_deposit"));
+                $("#edit_deposited_by").val($(this).data("deposited_by"));
+                $("#edit_date").val($(this).data("created_at"));
                 $("#edit_comments").val($(this).data("comments"));
             });
 
@@ -273,6 +297,8 @@
                     _token: "{{ csrf_token() }}",
                     expected_deposit: $("#edit_expected_deposit").val(),
                     actual_deposit: $("#edit_actual_deposit").val(),
+                    deposited_by: $("#edit_deposited_by").val(),
+                    created_at: $("#edit_date").val(),
                     comments: $("#edit_comments").val()
                 };
 

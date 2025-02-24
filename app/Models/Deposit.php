@@ -16,6 +16,8 @@ class Deposit extends Model
         'actual_deposit',
         'shortage',
         'comments',
+        'deposited_by',
+        'created_at',
         'date',
     ];
 
@@ -25,6 +27,7 @@ class Deposit extends Model
         'actual_deposit',
         'shortage',
         'comments',
+        'deposited_by',
         'date',
     ];
 }

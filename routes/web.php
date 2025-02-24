@@ -52,9 +52,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/employee/{restaurant}', [RestaurantController::class, 'employee'])->name('restaurant.employees');
     Route::post('/employee', [RestaurantController::class, 'employeeStore'])->name('employees.store');
 
-    Route::get('/metrics', [WeeklyMetricController::class, 'index'])->name('metrics.index');
+    Route::get('/metrics/{branch_code}', [WeeklyMetricController::class, 'index'])->name('metrics.index');
     Route::post('/metrics', [WeeklyMetricController::class, 'store'])->name('metrics.store');
     Route::get('/download-metrics', [WeeklyMetricController::class, 'downloadCSV'])->name('metrics.download');
+    Route::put('/weekly-metrics/{id}', [WeeklyMetricController::class, 'update']);
+    Route::get('/weekly-metrics/{id}/edit', [WeeklyMetricController::class, 'edit']);
 
 });
 

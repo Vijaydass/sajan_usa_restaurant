@@ -17,13 +17,13 @@
 
 <body>
     <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth">
+        <div class="container-fluid page-body-wrapper full-page-wrapper" style="background: url(https://restaurant.test/assets/images/auth/lockscreen-bg.jpg) no-repeat center center fixed; background-size: cover;">
+            <div class="content-wrapper d-flex align-items-center auth" style="background-color: transparent">
                 <div class="row flex-grow">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left p-5">
                             <div class="brand-logo">
-                                <img src="{{asset('assets/images/logo.svg')}}">
+                                <img src="{{asset('assets/images/vyom-logo.png')}}">
                             </div>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>

@@ -10,8 +10,8 @@ class WeeklyMetric extends Model
     use HasFactory;
 
     protected $fillable = [
-        'week_start', 'week_end', 'ndcp', 'cml', 'payrolls',
-        'last_year_sale', 'current_year_sale', 'growth'
+        'week_start', 'week_end', 'ndcp', 'cml', 'payrolls', 'branch_code',
+        'last_year_sale', 'current_year_sale', 'growth','payroll_tax'
     ];
 
     protected $appends = ['ndcp_percentage', 'cml_percentage', 'payroll_percentage', 'growth_percentage'];
@@ -28,7 +28,7 @@ class WeeklyMetric extends Model
 
     public function getPayrollPercentageAttribute()
     {
-        return $this->current_year_sale ? round(($this->payrolls / $this->current_year_sale) * 100, 2) : 0;
+        return $this->current_year_sale ? round((($this->payrolls + $this->payroll_tax) / $this->current_year_sale) * 100, 2) : 0;
     }
 
     public function getGrowthPercentageAttribute()

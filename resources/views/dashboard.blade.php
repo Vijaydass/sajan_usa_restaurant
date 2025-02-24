@@ -20,13 +20,13 @@
                 <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://picsum.photos/1200/300" class="d-block w-100" alt="Image 1">
+                            <img src="https://picsum.photos/1200/450" class="d-block w-100" alt="Image 1">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://picsum.photos/1200/300" class="d-block w-100" alt="Image 2">
+                            <img src="https://picsum.photos/1200/450" class="d-block w-100" alt="Image 2">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://picsum.photos/1200/300" class="d-block w-100" alt="Image 3">
+                            <img src="https://picsum.photos/1200/450" class="d-block w-100" alt="Image 3">
                         </div>
                     </div>
 
@@ -50,14 +50,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-5 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body p-0 d-flex">
-                        <div id="inline-datepicker" class="datepicker datepicker-custom"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-7 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Important Updates</h4>
@@ -66,7 +59,7 @@
                                 <div class="d-flex mt-3 align-items-top">
                                     <img src="assets/images/faces/face3.jpg" class="img-sm rounded-circle me-3" alt="image">
                                     <div class="mb-0 flex-grow">
-                                        <h5 class="me-2 mb-2">{{ $update->title }}</h5>
+                                        <h5 class="me-2 mb-2">{{ $update->title }} - ({{$update->created_at->format('Y-m-d')}})</h5>
                                         <p class="mb-0 font-weight-light">{{ Str::limit($update->content, 100) }}</p>
                                     </div>
                                     @if($update->url)

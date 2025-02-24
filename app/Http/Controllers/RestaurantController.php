@@ -95,8 +95,10 @@ class RestaurantController extends Controller
             'branch_code' => 'required|string|exists:restaurants,branch_code',
             'expected_deposit' => 'required|numeric|min:1',
             'actual_deposit' => 'required|numeric|min:0',
-            'comments' => 'nullable|string'
+            'comments' => 'nullable|string',
+            'deposited_by' => 'nullable|string',
         ]);
+
 
         try {
             DB::beginTransaction();
@@ -111,6 +113,7 @@ class RestaurantController extends Controller
             $deposit->actual_deposit = $request->actual_deposit;
             $deposit->shortage = $shortage;
             $deposit->comments = $request->comments;
+            $deposit->deposited_by = $request->deposited_by;
             $deposit->save();
 
             DB::commit();
@@ -139,6 +142,9 @@ class RestaurantController extends Controller
         ->when(request('comments'), function ($q) {
             $q->where('comments', 'like', '%' . request('comments') . '%');
         })
+        ->when(request('deposited_by'), function ($q) {
+            $q->where('deposited_by', 'like', '%' . request('deposited_by') . '%');
+        })
         ->when(request('created_at'), function ($q) {
             $q->whereDate('created_at', request('created_at'));
         })
@@ -163,6 +169,7 @@ class RestaurantController extends Controller
             'expected_deposit' => 'required|numeric',
             'actual_deposit' => 'required|numeric',
             'comments' => 'nullable|string',
+            'deposited_by' => 'nullable|string',
         ]);
 
         $deposit = Deposit::findOrFail($id);
@@ -174,6 +181,8 @@ class RestaurantController extends Controller
             'actual_deposit' => $request->actual_deposit,
             'shortage' => $shortage,
             'comments' => $request->comments,
+            'deposited_by' => $request->deposited_by,
+            'created_at' => $request->created_at,
         ]);
 
         return response()->json(['success' => true, 'message' => 'Deposit updated successfully!']);
