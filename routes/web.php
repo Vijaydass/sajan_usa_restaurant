@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LatestUpdateController;
 use App\Http\Controllers\PayrollController;
+use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\UserController;
@@ -57,6 +58,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/download-metrics', [WeeklyMetricController::class, 'downloadCSV'])->name('metrics.download');
     Route::put('/weekly-metrics/{id}', [WeeklyMetricController::class, 'update']);
     Route::get('/weekly-metrics/{id}/edit', [WeeklyMetricController::class, 'edit']);
+
+    Route::get('/performance/{branch_code}', [PerformanceController::class, 'index'])->name('performance.index');
+    Route::post('/performance/store', [PerformanceController::class, 'store'])->name('performance.store');
+    Route::put('/performance/update/{id}', [PerformanceController::class, 'update'])->name('performance.update');
 
 });
 

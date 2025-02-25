@@ -57,6 +57,8 @@
 
                                             <a href="{{ route('metrics.index', $restaurant->branch_code) }}" class="btn btn-primary btn-sm" title="Metrics"><i class="mdi mdi-chart-bar"></i></a>
 
+                                            <a href="{{ route('performance.index', $restaurant->branch_code) }}" class="btn btn-primary btn-sm" title="Performance"><i class="mdi mdi-finance"></i></a>
+
                                             @if (Auth::user()->role === 'admin')
 
                                             <a href="{{ route('restaurant.edit', $restaurant->id) }}" class="btn btn-warning btn-sm"><i class="mdi mdi-file-check"></i></a>
