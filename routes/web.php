@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LatestUpdateController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\PerformanceController;
@@ -63,6 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/performance/store', [PerformanceController::class, 'store'])->name('performance.store');
     Route::put('/performance/update/{id}', [PerformanceController::class, 'update'])->name('performance.update');
 
+    Route::resource('contacts', ContactController::class);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

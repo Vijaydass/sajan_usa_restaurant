@@ -13,7 +13,7 @@
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="{{asset('assets/images/faces/face1.jpg')}}" alt="image">
+                        <img src="{{asset('assets/images/faces-clipart/pic-1.png')}}" alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">

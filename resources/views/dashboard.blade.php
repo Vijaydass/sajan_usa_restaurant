@@ -57,7 +57,7 @@
                         @if($updates->count() > 0)
                             @foreach($updates as $update)
                                 <div class="d-flex mt-3 align-items-top">
-                                    <img src="assets/images/faces/face3.jpg" class="img-sm rounded-circle me-3" alt="image">
+                                    <img src="{{asset('assets/images/samples/300x300/10.jpg')}}" class="img-sm rounded-circle me-3" alt="image">
                                     <div class="mb-0 flex-grow">
                                         <h5 class="me-2 mb-2">{{ $update->title }} - ({{$update->created_at->format('Y-m-d')}})</h5>
                                         <p class="mb-0 font-weight-light">{{ Str::limit($update->content, 100) }}</p>
@@ -76,6 +76,48 @@
                         @endif
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <a href="https://sso.inspirepartners.net/app/inspirepartners_adobeexperiencemanager_1/exk2mn85ssDid0y6q697/sso/saml">
+                    <img src="https://dunkin-service.onrender.com/assets/images/learning1.png" alt="" class="rounded mb-2" height="100" width="200">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://sso.inspirepartners.net/app/inspirepartners_adobeexperiencemanager_1/exk2mn85ssDid0y6q697/sso/saml">
+                    <img src="https://dunkin-service.onrender.com/assets/images/learning2.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://dbi1346.net-chef.com/standalone/modern.ct#Login">
+                    <img src="https://dunkin-service.onrender.com/assets/images/operations1.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://login.workpulse.com/core/login?signin=97608d4d9b34904da6d833c4f7243793">
+                    <img src="https://dunkin-service.onrender.com/assets/images/operations2.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://dun01-ohra-prod.hospitality.oracleindustry.com/login.jsp">
+                    <img src="https://dunkin-service.onrender.com/assets/images/operations3.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://natdcp.com/user/login">
+                    <img src="https://dunkin-service.onrender.com/assets/images/operations4.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://lsm-prod-idp.dunkinbrands.com/my.policy">
+                    <img src="https://dunkin-service.onrender.com/assets/images/management1.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://lsm-prod-idp.dunkinbrands.com/my.policy">
+                    <img src="https://dunkin-service.onrender.com/assets/images/management2.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
             </div>
         </div>
     </div>

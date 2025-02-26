@@ -3,7 +3,7 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                    <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="profile" />
+                    <img src="{{ asset('assets/images/faces-clipart/pic-1.png') }}" alt="profile" />
                     <span class="login-status online"></span>
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
@@ -56,6 +56,12 @@
                 <a class="nav-link" href="{{ route('restaurant.index') }}">
                     <span class="menu-title">Restaurant</span>
                     <i class="mdi mdi-store menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('contacts.index') }}">
+                    <span class="menu-title">Contacts</span>
+                    <i class="mdi mdi-account-box menu-icon"></i>
                 </a>
             </li>
         @endif
