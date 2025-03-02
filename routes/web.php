@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/weekly-metrics/{id}/edit', [WeeklyMetricController::class, 'edit']);
 
     Route::get('/performance/{branch_code}', [PerformanceController::class, 'index'])->name('performance.index');
+    Route::get('/performances', [PerformanceController::class, 'restaurantPerformances'])->name('performance.dashboard');
     Route::post('/performance/store', [PerformanceController::class, 'store'])->name('performance.store');
     Route::put('/performance/update/{id}', [PerformanceController::class, 'update'])->name('performance.update');
 

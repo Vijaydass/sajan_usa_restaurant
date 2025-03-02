@@ -6,13 +6,6 @@
                     <i class="mdi mdi-home"></i>
                 </span> Dashboard
             </h3>
-            <nav aria-label="breadcrumb">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                    </li>
-                </ul>
-            </nav>
         </div>
         <div class="row">
             <div class="col-12 grid-margin">
@@ -119,6 +112,66 @@
                     <img src="https://dunkin-service.onrender.com/assets/images/management2.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
                 </a>
             </div>
+            <div class="col-12 col-md-3">
+                <a href="https://dbi1346.net-chef.com/standalone/modern.ct#Login">
+                    <img src="https://cdn.net-chef.com/application/enterprise/20.25.02.06/028eee91/javascript/extjs7/standalone/resources/images/net-chef.svg" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://natdcp.com/user/login">
+                    <img src="https://natdcp.com/themes/custom/ndcp_theme/images/logo.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://lsm-prod-idp.dunkinbrands.com/my.policy">
+                    <img src="https://lsm-prod-idp.dunkinbrands.com/public/images/customization/Common/Prod-IDP-LSM-NOW-AP_general_ui/logo_image_en.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://login.workpulse.com/core/login?signin=b9bf0dafa1c5e5f9fc3531fa6240b88f">
+                    <img src="https://www.workpulse.com/wp-content/uploads/2019/07/worpulse.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://sso.inspirepartners.net/app/inspirepartners_adobeexperiencemanager_1/exk2mn85ssDid0y6q697/sso/saml">
+                    <img src="https://thecenter.dunkinbrands.com/content/dam/public-facing-documents/TheCenter_Logo_090622.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://medallia-prod-idp.dunkinbrands.com/my.policy">
+                    <img src="https://dunkinbrands.medallia.com/efilemanager/ad2b1bf29c5755a367b670c3c2782e89.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://dun01-ohra-prod.hospitality.oracleindustry.com/login.jsp">
+                    <img src="https://img1.wsimg.com/isteam/ip/42d84758-2bfa-4062-8a15-14245917a115/Screenshot%202020-11-24%20223558.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:776,h:388,cg:true" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://hmecloud.com/">
+                    <img src="https://hmecloud.com/static/media/hmecloud-logo.c578deb37a3eb61debb40fe1b8c64a16.svg" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://franchisee.dunkinbrands.com/DunkinPortal/auth/login">
+                    <img src="https://franchisee.dunkinbrands.com/DunkinPortal/assets/images/DD%20Logo%20July%202022.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://orders.ddbrjobaids.com/login/Dunkin">
+                    <img src="https://orders.ddbrjobaids.com/view.pie?pie=LEfiIR1gu%2BgdE6Lq1ViVqbQaKHhe19UlTHcsRSolVPuOq54ITQcibA%2BZZPpAh%2Fg6U8G9xvTAxlQAWBqi3WKpMw%3D%3D&ext=.png" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://metiri-prod-idp.dunkinbrands.com/my.policy">
+                    <img src="https://metiri-prod-idp.dunkinbrands.com/public/images/customization/Common/prod-idp-metiri-AP_general_ui/logo_image_en.jpg" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="https://dunkinbaskin.compliancemetrix.com/rql/p/acoreauditlandingpagevoverviewvactivator">
+                    <img src="https://www.cmx1.com/hubfs/cmx1-logo.svg" alt="" class="rounded mb-2 bg-white" width="200" height="100">
+                </a>
+            </div>            
         </div>
     </div>
     @push('scripts')

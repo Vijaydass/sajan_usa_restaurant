@@ -58,8 +58,8 @@ $black: #000000;
 
 
 $theme-colors: (
-  primary: #b66dff,
-  secondary: #c3bdbd,
+  primary: #f5821f,
+  secondary: #683817,
   success: #1bcfb4,
   info: #198ae3,
   warning: #fed713,
@@ -68,8 +68,8 @@ $theme-colors: (
   dark: #3e4b5b
 );
 
-$primary: #b66dff;
-$secondary: #c3bdbd;
+$primary: #f5821f;
+$secondary: #683817;
 $success: #1bcfb4;
 $info: #198ae3;
 $warning: #fed713;
@@ -77,7 +77,7 @@ $danger: #fe7c96;
 $light: #f8f9fa;
 $dark: #3e4b5b;
 
-$theme-gradient-colors: (primary: linear-gradient(to right, #da8cff, #9a55ff),
+$theme-gradient-colors: (primary: linear-gradient(to right, #e11383, #f5821f),
 secondary: linear-gradient(to right, #e7ebf0, #868e96),
 success: linear-gradient(to right, #84d9d2, #07cdae),
 info: linear-gradient(to right, #90caf9, #047edf 99%),
@@ -293,7 +293,7 @@ $modal-content-box-shadow-xs: 0 3px 9px rgba($black, .5);
 $modal-content-box-shadow-sm-up: 0 5px 15px rgba($black, .5);
 
 $modal-backdrop-bg: $black;
-$modal-backdrop-opacity: .5; 
+$modal-backdrop-opacity: .5;
 
 $modal-header-border-color: $border-color;
 $modal-content-border-color: $border-color;
@@ -361,6 +361,6 @@ $page-title-color: $body-color;
 ////////   MISC  //////////////
 
 $pro-banner: #000;
-$blue-teal-gradient: linear-gradient(to right, #da8cff, #9a55ff) !important;
+$blue-teal-gradient: linear-gradient(to right, #e11383, #f5821f) !important;
 
 $buy-nowbanner-padding-top:70px;

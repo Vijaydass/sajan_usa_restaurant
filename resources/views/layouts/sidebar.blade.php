@@ -48,6 +48,12 @@
                     <i class="fa fa-bullhorn menu-icon"></i>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('performance.dashboard') }}">
+                    <span class="menu-title">Performance Dashboard</span>
+                    <i class="mdi mdi-finance menu-icon"></i>
+                </a>
+            </li>
         @endif
 
         <!-- User Menu -->
