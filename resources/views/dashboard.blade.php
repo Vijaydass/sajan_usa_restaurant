@@ -1,26 +1,15 @@
 <x-app-layout>
     <div class="content-wrapper">
-        <div class="page-header">
-            <h3 class="page-title">
-                <span class="page-title-icon bg-gradient-primary text-white me-2">
-                    <i class="mdi mdi-home"></i>
-                </span> Dashboard
-            </h3>
-        </div>
         <div class="row">
             <div class="col-12 grid-margin">
                 <!-- Bootstrap Carousel -->
                 <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://picsum.photos/1200/450" class="d-block w-100" alt="Image 1">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://picsum.photos/1200/450" class="d-block w-100" alt="Image 2">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://picsum.photos/1200/450" class="d-block w-100" alt="Image 3">
-                        </div>
+                        @foreach ($sliders as $index => $slider)
+                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                <img src="{{ asset('uploads/sliders/' . $slider->image) }}" class="d-block w-100" alt="Slider Image">
+                            </div>
+                        @endforeach
                     </div>
 
                     <!-- Controls -->
@@ -171,7 +160,7 @@
                 <a href="https://dunkinbaskin.compliancemetrix.com/rql/p/acoreauditlandingpagevoverviewvactivator">
                     <img src="https://www.cmx1.com/hubfs/cmx1-logo.svg" alt="" class="rounded mb-2 bg-white" width="200" height="100">
                 </a>
-            </div>            
+            </div>
         </div>
     </div>
     @push('scripts')

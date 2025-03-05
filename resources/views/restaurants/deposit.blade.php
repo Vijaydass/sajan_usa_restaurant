@@ -8,11 +8,11 @@
             <div class="col-12 stretch-card grid-margin">
                 <div class="card bg-gradient-info card-img-holder text-white">
                     <div class="card-body">
-                        <h1 class="font-weight-normal mb-3">
+                        <h1 class="font-weight-normal mb-3" style="color: #683817">
                             Welcome to Branch
-                            <span class="font-weight-bold text-warning float-end">{{$restaurant->branch_code}}</span>
+                            <span class="font-weight-bold float-end" style="color: #f5821f">{{$restaurant->branch_code}}</span>
                         </h1>
-                        <h3 class="font-weight-normal">Details and operations specific to Branch <span class="text-warning">{{$restaurant->name}}</span></h3>
+                        <h3 class="font-weight-normal" style="color: #683817">Details and operations specific to Branch <span class="text-warning">{{$restaurant->name}}</span></h3>
                     </div>
                 </div>
             </div>
@@ -127,9 +127,9 @@
                                 <thead>
                                     <tr>
                                         <th class="font-weight-normal">Summary</th>
-                                        <th>Total Expected Deposit : <span id="total_expected_deposit">{{$total_expected}}</span></th>
-                                        <th>Total Actual Deposit : <span id="total_actual_deposit">{{$total_actual}}</span></th>
-                                        <th>Total Shortage : <span id="total_shortage">{{$total_shortage}}</span></th>
+                                        <th>$<span id="total_expected_deposit">{{$total_expected}}</span></th>
+                                        <th>$<span id="total_actual_deposit">{{$total_actual}}</span></th>
+                                        <th>$<span id="total_shortage">{{$total_shortage}}</span></th>
                                         <th></th>
                                         <th></th>
                                         <th></th>

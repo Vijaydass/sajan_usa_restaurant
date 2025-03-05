@@ -17,15 +17,13 @@
         <link rel="stylesheet" href="{{asset('assets/vendors/font-awesome/css/font-awesome.min.css')}}"/>
         <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css')}}">
         <!-- End plugin css for this page -->
-        <!-- inject:css -->
-        <!-- endinject -->
         <!-- Layout styles -->
         <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
         <!-- End layout styles -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}"/>
+        <link rel="shortcut icon" href="{{asset('assets/images/vyom-logo.png')}}"/>
         @stack('styles')
     </head>
-    <body>
+    <body class="sidebar-icon-only">
         <div class="container-scroller">
           <!-- partial:partials/_navbar.html -->
           @include('layouts.navigation')

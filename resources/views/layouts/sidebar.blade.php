@@ -65,6 +65,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('sliders.index') }}">
+                    <span class="menu-title">Sliders</span>
+                    <i class="mdi mdi-image menu-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('contacts.index') }}">
                     <span class="menu-title">Contacts</span>
                     <i class="mdi mdi-account-box menu-icon"></i>

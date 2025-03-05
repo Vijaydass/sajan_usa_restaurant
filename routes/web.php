@@ -6,9 +6,11 @@ use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeeklyMetricController;
 use App\Models\LatestUpdate;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +32,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         $updates = LatestUpdate::latest()->take(5)->get(); // Get the 5 latest updates
-        return view('dashboard', compact('updates'));
+        $sliders = Slider::all();
+        return view('dashboard', compact('updates','sliders'));
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::post('/payroll', [PayrollController::class, 'store'])->name('payroll.store');
@@ -65,13 +68,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/performance/store', [PerformanceController::class, 'store'])->name('performance.store');
     Route::put('/performance/update/{id}', [PerformanceController::class, 'update'])->name('performance.update');
 
-    Route::resource('contacts', ContactController::class);
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('latest-updates', LatestUpdateController::class);
     Route::resource('users', UserController::class);
     Route::resource('restaurant', RestaurantController::class)->except('index');
+    Route::resource('contacts', ContactController::class);
+    Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
+    Route::post('/sliders', [SliderController::class, 'store'])->name('sliders.store');
+    Route::post('/sliders/{slider}', [SliderController::class, 'update'])->name('sliders.update');
+    Route::delete('/sliders/{slider}', [SliderController::class, 'destroy'])->name('sliders.destroy');
+
 });
 
 require __DIR__.'/auth.php';

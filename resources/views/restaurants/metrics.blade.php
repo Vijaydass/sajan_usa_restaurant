@@ -85,17 +85,17 @@
                                 <thead>
                                     <tr>
                                         <th class="font-weight-normal">Summary</th>
-                                        <th>Total NDCP : <span id="total_expected_deposit">{{$total_ndcp}}</span></th>
-                                        <th>Total CML : <span id="total_actual_deposit">{{$total_cml}}</span></th>
-                                        <th>Total Payrolls : <span id="total_shortage">{{$total_payrolls}}</span></th>
-                                        <th>Total Payroll Tax : <span id="total_shortage">{{$total_payroll_tax}}</span></th>
-                                        <th>Total Last Year Sales : <span id="total_shortage">{{$total_last_year_sale}}</span></th>
-                                        <th>Total Sales : <span id="total_shortage">{{$total_current_year_sale}}</span></th>
-                                        <th>Total Growth : <span id="total_shortage">{{$total_growth}}</span></th>
-                                        <th>Total NDCP % : <span id="total_shortage">{{$average_ndcp}}</span></th>
-                                        <th>Total CML % : <span id="total_shortage">{{$average_cml}}</span></th>
-                                        <th>Total Payrolls % : <span id="total_shortage">{{$average_payrolls}}</span></th>
-                                        <th>Total Growth % : <span id="total_shortage">{{$average_growth}}</span></th>
+                                        <th>$<span id="total_expected_deposit">{{$total_ndcp}}</span></th>
+                                        <th>$<span id="total_actual_deposit">{{$total_cml}}</span></th>
+                                        <th>$<span id="total_shortage">{{$total_payrolls}}</span></th>
+                                        <th>$<span id="total_shortage">{{$total_payroll_tax}}</span></th>
+                                        <th>$<span id="total_shortage">{{$total_last_year_sale}}</span></th>
+                                        <th>$<span id="total_shortage">{{$total_current_year_sale}}</span></th>
+                                        <th>$<span id="total_shortage">{{$total_growth}}</span></th>
+                                        <th><span id="total_shortage">{{$average_ndcp}}</span>%</th>
+                                        <th><span id="total_shortage">{{$average_cml}}</span>%</th>
+                                        <th><span id="total_shortage">{{$average_payrolls}}</span>%</th>
+                                        <th><span id="total_shortage">{{$average_growth}}</span>%</th>
                                     </tr>
                                 </thead>
                             </table>
