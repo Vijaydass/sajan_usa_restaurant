@@ -60,6 +60,7 @@
                                         <th>CML %</th>
                                         <th>Payroll %</th>
                                         <th>Growth %</th>
+                                        <th>Big 2</th>
                                         <th>Update</th>
                                     </tr>
                                 </thead>
@@ -78,6 +79,7 @@
                                         <td>{{ $metric->cml_percentage }}%</td>
                                         <td>{{ $metric->payroll_percentage }}%</td>
                                         <td>{{ $metric->growth_percentage }}%</td>
+                                        <td>{{ $metric->payroll_percentage+$metric->ndcp_percentage + $metric->cml_percentage}}%</td>
                                         <td><button class="btn btn-warning edit-btn btn-sm" data-id="{{ $metric->id }}">Edit</button></td>
                                     </tr>
                                     @endforeach

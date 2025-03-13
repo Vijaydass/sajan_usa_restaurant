@@ -51,6 +51,10 @@
                                 <h5 class="fw-bold">${{ number_format($metrics->total_current_year_sale, 2) }}</h5>
                             </div>
                             <div>
+                                <small class="text-muted">Big 2</small>
+                                <h5 class="fw-bold">{{ $metrics->total_cml_percentage + $metrics->total_payroll_percentage + $metrics->total_ndcp_percentage }} %</h5>
+                            </div>
+                            <div>
                                 <small class="text-muted">Last Year Sale</small>
                                 <h5 class="fw-bold">${{ number_format($metrics->total_last_year_sale, 2) }}</h5>
                             </div>

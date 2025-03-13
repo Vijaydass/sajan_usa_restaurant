@@ -114,6 +114,7 @@ class RestaurantController extends Controller
             $deposit->shortage = $shortage;
             $deposit->comments = $request->comments;
             $deposit->deposited_by = $request->deposited_by;
+            $deposit->created_at = $request->created_at;
             $deposit->save();
 
             DB::commit();

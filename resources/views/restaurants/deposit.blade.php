@@ -116,6 +116,7 @@
                                                     data-actual_deposit="{{ $deposit->actual_deposit }}"
                                                     data-comments="{{ $deposit->comments }}"
                                                     data-deposited_by="{{ $deposit->deposited_by }}"
+                                                    data-created_at="{{ $deposit->created_at }}"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#editDepositModal">
                                                     <i class="mdi mdi-pencil"></i>
@@ -154,6 +155,10 @@
                     <div class="modal-body">
                         <form id="depositForm">
                             <input type="hidden" class="form-control" id="branch_code" placeholder="Enter branch code" required value="{{$restaurant->branch_code}}">
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" placeholder="Enter date" required>
+                            </div>
                             <div class="mb-3">
                                 <label for="expected_deposit" class="form-label">Expected Deposit</label>
                                 <input type="number" class="form-control" id="expected_deposit" placeholder="Enter expected deposit" required>
@@ -250,7 +255,8 @@
                 expected_deposit: document.getElementById('expected_deposit').value,
                 actual_deposit: document.getElementById('actual_deposit').value,
                 deposited_by: document.getElementById('deposited_by').value,
-                comments: document.getElementById('comments').value
+                comments: document.getElementById('comments').value,
+                created_at: document.getElementById('date').value
             };
 
             fetch('/deposits', {
@@ -284,7 +290,10 @@
                 $("#edit_expected_deposit").val($(this).data("expected_deposit"));
                 $("#edit_actual_deposit").val($(this).data("actual_deposit"));
                 $("#edit_deposited_by").val($(this).data("deposited_by"));
-                $("#edit_date").val($(this).data("created_at"));
+                let editDate = $(this).data("created_at"); // Get timestamp
+                let date = editDate ? editDate.split(' ')[0] : '';
+                console.log(date);
+                $("#edit_date").val(date);
                 $("#edit_comments").val($(this).data("comments"));
             });
 
