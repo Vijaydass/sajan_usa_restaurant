@@ -327,4 +327,73 @@ class RestaurantController extends Controller
             return response()->json(['error' => 'Something went wrong', 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function downloadDepositCSV(Restaurant $restaurant)
+    {
+        $query = Deposit::where('branch_code', $restaurant->branch_code);
+
+        // Apply filters
+        $query->when(request('start_date') && request('end_date'), function ($q) {
+            $q->whereBetween('created_at', [request('start_date') . ' 00:00:00', request('end_date') . ' 23:59:59']);
+        });
+
+        $deposites = $query->get();
+
+        $total_expected = $query->sum('expected_deposit');
+        $total_actual = $query->sum('actual_deposit');
+        $total_shortage = $query->sum('shortage');
+
+
+        $csvData = "Date,Expected Deposit,Actual Deposit,Shortage,Comments,Deposited by\n";
+
+        foreach ($deposites as $metric) {
+            $csvData .= "{$metric->created_at->format('d-m-Y')},{$metric->expected_deposit},{$metric->actual_deposit},{$metric->shortage},{$metric->comments},{$metric->deposited_by}\n";
+        }
+
+        $csvData .= "Total,$ {$total_expected},$ {$total_actual},$ {$total_shortage},,\n";
+
+        return response($csvData)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-Disposition', 'attachment; filename="deposit_report.csv"');
+    }
+
+    public function downloadMaintenanceCSV(Restaurant $restaurant)
+    {
+        $query = Maintenance::where('branch_code', $restaurant->branch_code);
+
+        // Apply filters
+        $query->when(request('equipment_name'), function ($q) {
+            $q->where('equipment_name', 'like', '%' . request('equipment_name') . '%');
+        })
+        ->when(request('payment_type'), function ($q) {
+            $q->where('payment_type', request('payment_type'));
+        })
+        ->when(request('status'), function ($q) {
+            $q->where('status', request('status'));
+        })
+        ->when(request('reason'), function ($q) {
+            $q->where('reason', 'like', '%' . request('reason') . '%');
+        })
+        ->when(request('created_at'), function ($q) {
+            $q->whereDate('created_at', request('created_at'));
+        })
+        ->when(request('start_date') && request('end_date'), function ($q) {
+            $q->whereBetween('created_at', [
+                request('start_date') . ' 00:00:00',
+                request('end_date') . ' 23:59:59'
+            ]);
+        });
+
+        $maintenances = $query->get();
+
+        $csvData = "Date,Equipment Name,Payment Type,Reason,Status\n";
+
+        foreach ($maintenances as $metric) {
+            $csvData .= "{$metric->created_at->format('d-m-Y')},{$metric->equipment_name},{$metric->payment_type},{$metric->reason},{$metric->status}\n";
+        }
+
+        return response($csvData)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-Disposition', 'attachment; filename="deposit_report.csv"');
+    }
 }

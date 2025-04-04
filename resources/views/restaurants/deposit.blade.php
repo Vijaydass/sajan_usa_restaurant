@@ -59,6 +59,7 @@
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#depositModal">
                                     Add New Deposit
                                 </button>
+                                <a href="{{ route('deposit.download',['restaurant' => $restaurant->id, 'start_date' => request('start_date'), 'end_date' => request('end_date')]) }}" class="btn btn-success btn-sm">Download CSV</a>
                             </div>
                         </div>
                         <div class="table-responsive">

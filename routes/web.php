@@ -49,17 +49,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/deposits', [RestaurantController::class, 'depositStore']);
     Route::get('/deposits/{restaurant}', [RestaurantController::class, 'deposits'])->name('restaurant.deposit');
     Route::put('/deposits/{id}', [RestaurantController::class, 'depositUpdate'])->name('restaurant.deposit.update');
+    Route::get('/download-deposits/{restaurant}', [RestaurantController::class, 'downloadDepositCSV'])->name('deposit.download');
 
     Route::post('/maintenances', [RestaurantController::class, 'maintenanceStore'])->name('maintenances');
     Route::get('/maintenances/{restaurant}', [RestaurantController::class, 'maintenances'])->name('restaurant.maintenance');
     Route::put('/maintenances/{id}', [RestaurantController::class, 'maintenanceUpdate'])->name('restaurant.maintenance.update');
+    Route::get('/download-maintenances/{restaurant}', [RestaurantController::class, 'downloadMaintenanceCSV'])->name('maintenance.download');
 
     Route::get('/employee/{restaurant}', [RestaurantController::class, 'employee'])->name('restaurant.employees');
     Route::post('/employee', [RestaurantController::class, 'employeeStore'])->name('employees.store');
 
     Route::get('/metrics/{branch_code}', [WeeklyMetricController::class, 'index'])->name('metrics.index');
     Route::post('/metrics', [WeeklyMetricController::class, 'store'])->name('metrics.store');
-    Route::get('/download-metrics', [WeeklyMetricController::class, 'downloadCSV'])->name('metrics.download');
+    Route::get('/download-metrics/{branch_code}', [WeeklyMetricController::class, 'downloadCSV'])->name('metrics.download');
     Route::put('/weekly-metrics/{id}', [WeeklyMetricController::class, 'update']);
     Route::get('/weekly-metrics/{id}/edit', [WeeklyMetricController::class, 'edit']);
 

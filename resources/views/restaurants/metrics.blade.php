@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-4 px-2">
                             <button type="submit" class="btn btn-primary btn-sm">Search</button>
-                            <a href="{{ route('metrics.download') }}" class="btn btn-success btn-sm">Download CSV</a>
+                            <a href="{{ route('metrics.download',['branch_code' => $branch_code,'start_date' => request('start_date'), 'end_date' => request('end_date')]) }}" class="btn btn-success btn-sm">Download CSV</a>
                         </div>
                     </div>
                 </div>

@@ -83,14 +83,36 @@ class WeeklyMetricController extends Controller
     }
 
 
-    public function downloadCSV()
+    public function downloadCSV($branch_code, Request $request)
     {
-        $metrics = WeeklyMetric::all();
-        $csvData = "Week Start,Week End,NDCP,CML,Payrolls,Last Year Sale,Current Year Sale,Growth%\n";
+        $query = WeeklyMetric::where('branch_code',$branch_code)->orderBy('week_start', 'desc');
+
+        if ($request->has('start_date') && $request->has('end_date')) {
+            $query->whereBetween('week_start', [$request->start_date, $request->end_date]);
+        }
+
+        $metrics = $query->get();
+
+        $total_ndcp = $metrics->sum('ndcp');
+        $total_cml = $metrics->sum('cml');
+        $total_payrolls = $metrics->sum('payrolls');
+        $total_payroll_tax = $metrics->sum('payroll_tax');
+        $total_last_year_sale = $metrics->sum('last_year_sale');
+        $total_current_year_sale = $metrics->sum('current_year_sale');
+        $total_growth = $metrics->sum('growth');
+        $average_ndcp = round($metrics->avg('ndcp_percentage'),2);
+        $average_cml = round($metrics->avg('cml_percentage'),2);
+        $average_payrolls = round($metrics->avg('payroll_percentage'),2);
+        $average_growth = round($metrics->avg('growth_percentage'),2);
+
+        $csvData = "Week Start,Week End,NDCP,CML,Payrolls,Payroll Tax,Last Year Sale,Current Year Sale,Growth,NDCP %,CML %,Payroll %,Growth %,Big 2\n";
 
         foreach ($metrics as $metric) {
-            $csvData .= "{$metric->week_start},{$metric->week_end},{$metric->ndcp},{$metric->cml},{$metric->payrolls},{$metric->last_year_sale},{$metric->current_year_sale},{$metric->growth}\n";
+            $big2 = $metric->payroll_percentage+$metric->ndcp_percentage + $metric->cml_percentage;
+            $csvData .= "{$metric->week_start},{$metric->week_end},{$metric->ndcp},{$metric->cml},{$metric->payrolls},{$metric->payroll_tax},{$metric->last_year_sale},{$metric->current_year_sale},{$metric->growth},{$metric->ndcp_percentage},{$metric->cml_percentage},{$metric->payroll_percentage},{$metric->growth_percentage},{$big2}\n";
         }
+
+        $csvData .= "Summary,,$ {$total_ndcp},$ {$total_cml},$ {$total_payrolls},{$total_payroll_tax},{$total_last_year_sale},{$total_current_year_sale},{$total_growth},{$average_ndcp} %,{$average_cml} %,{$average_payrolls}%,{$average_growth}%\n";
 
         return response($csvData)
             ->header('Content-Type', 'text/csv')

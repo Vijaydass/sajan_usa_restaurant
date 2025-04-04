@@ -31,6 +31,7 @@
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#maintenanceModal">
                                     Add New Maintenance
                                 </button>
+                                <a href="{{ route('maintenance.download',['restaurant' => $restaurant->id, 'created_at' => request('created_at'), 'equipment_name' => request('equipment_name'), 'payment_type' => request('payment_type'), 'reason' => request('reason'), 'status' => request('status')]) }}" class="btn btn-success btn-sm">Download CSV</a>
                             </div>
                         </div>
                         <div class="table-responsive">
