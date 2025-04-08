@@ -33,6 +33,9 @@ class WeeklyMetric extends Model
 
     public function getGrowthPercentageAttribute()
     {
-        return $this->last_year_sale ? round((($this->current_year_sale - $this->last_year_sale) / $this->last_year_sale) * 100, 2) : 0;
+        return ($this->last_year_sale != 0)
+            ? round((($this->current_year_sale - $this->last_year_sale) / $this->last_year_sale) * 100, 2)
+            : 0;
     }
+
 }
