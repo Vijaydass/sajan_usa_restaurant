@@ -31,7 +31,8 @@ class WeeklyMetricController extends Controller
         $average_last_year_sale = $metrics->avg('last_year_sale');
         $average_current_year_sale = $metrics->avg('current_year_sale');
         $average_growth = round($metrics->avg('growth_percentage'),2);
-        return view('restaurants.metrics', compact('branch_code','metrics','total_ndcp','total_cml','total_payrolls','total_payroll_tax','total_last_year_sale','total_current_year_sale','total_growth','average_ndcp','average_cml','average_payrolls','average_last_year_sale','average_current_year_sale', 'average_growth'));
+        $average_big2 = round($average_payrolls + $average_ndcp + $average_cml,2);
+        return view('restaurants.metrics', compact('branch_code','metrics','total_ndcp','total_cml','total_payrolls','total_payroll_tax','total_last_year_sale','total_current_year_sale','total_growth','average_ndcp','average_cml','average_payrolls','average_last_year_sale','average_current_year_sale', 'average_growth','average_big2'));
     }
 
     public function store(Request $request)

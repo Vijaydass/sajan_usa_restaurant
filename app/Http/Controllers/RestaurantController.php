@@ -152,14 +152,16 @@ class RestaurantController extends Controller
         ->when(request('start_date') && request('end_date'), function ($q) {
             $q->whereBetween('created_at', [request('start_date') . ' 00:00:00', request('end_date') . ' 23:59:59']);
         });
+        
+        $totalsQuery = clone $query;
 
         // Paginate the deposits
         $deposites = $query->sortable()->latest()->paginate(request('total_records', 10));
 
         // Calculate totals
-        $total_expected = $query->sum('expected_deposit');
-        $total_actual = $query->sum('actual_deposit');
-        $total_shortage = $query->sum('shortage');
+        $total_expected = $totalsQuery->sum('expected_deposit');
+        $total_actual = $totalsQuery->sum('actual_deposit');
+        $total_shortage = $totalsQuery->sum('shortage');
 
         return view('restaurants.deposit', compact('restaurant', 'deposites', 'total_expected', 'total_actual', 'total_shortage'));
     }

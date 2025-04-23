@@ -98,6 +98,7 @@
                                         <th><span id="total_shortage">{{$average_cml}}</span>%</th>
                                         <th><span id="total_shortage">{{$average_payrolls}}</span>%</th>
                                         <th><span id="total_shortage">{{$average_growth}}</span>%</th>
+                                        <th><span id="total_shortage">{{$average_big2}}</span>%</th>
                                     </tr>
                                 </thead>
                             </table>

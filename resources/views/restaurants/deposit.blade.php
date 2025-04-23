@@ -104,10 +104,10 @@
                                 <tbody>
                                     @foreach($deposites as $deposit)
                                         <tr>
-                                            <td>{{ $deposit->created_at->format('d-m-Y') }}</td>
-                                            <td>{{ $deposit->expected_deposit }}</td>
-                                            <td>{{ $deposit->actual_deposit }}</td>
-                                            <td>{{ $deposit->shortage }}</td>
+                                            <td>{{ $deposit->created_at->format('m-d-Y') }}</td>
+                                            <td>${{ $deposit->expected_deposit }}</td>
+                                            <td>${{ $deposit->actual_deposit }}</td>
+                                            <td>${{ $deposit->shortage }}</td>
                                             <td>{{ ucfirst($deposit->comments) }}</td>
                                             <td>{{ ucfirst($deposit->deposited_by) }}</td>
                                             <td>
@@ -139,7 +139,7 @@
                                 </thead>
                             </table>
                         </div>
-                        {{ $deposites->links('vendor.pagination.bootstrap-5') }}
+                        {{ $deposites->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
                     </div>
                 </div>
             </div>

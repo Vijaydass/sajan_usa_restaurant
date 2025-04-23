@@ -41,11 +41,42 @@ class PerformanceController extends Controller
 
         // Add calculated percentages
         foreach ($weeklyMetrics as $metric) {
-            $metric->total_growth_percentage = $metric->total_last_year_sale ? round((($metric->total_current_year_sale - $metric->total_last_year_sale) / $metric->total_last_year_sale) * 100, 2) : 0;
-            $metric->total_ndcp_percentage = $metric->total_current_year_sale ? round(($metric->total_ndcp / $metric->total_current_year_sale) * 100, 2) : 0;
-            $metric->total_cml_percentage = $metric->total_current_year_sale ? round(($metric->total_cml / $metric->total_current_year_sale) * 100, 2) : 0;
-            $metric->total_payroll_percentage = $metric->total_current_year_sale ? round((($metric->total_payrolls + $metric->total_payroll_tax) / $metric->total_current_year_sale) * 100, 2) : 0;
+
+    // Total Growth Percentage
+    if ($metric->total_last_year_sale != 0) {
+            $metric->total_growth_percentage = round(
+                (($metric->total_current_year_sale - $metric->total_last_year_sale) / $metric->total_last_year_sale) * 100,
+                2
+            );
+        } else {
+            $metric->total_growth_percentage = 0;
         }
+    
+        // NDCP %
+        if ($metric->total_current_year_sale != 0) {
+            $metric->total_ndcp_percentage = round(($metric->total_ndcp / $metric->total_current_year_sale) * 100, 2);
+        } else {
+            $metric->total_ndcp_percentage = 0;
+        }
+    
+        // CML %
+        if ($metric->total_current_year_sale != 0) {
+            $metric->total_cml_percentage = round(($metric->total_cml / $metric->total_current_year_sale) * 100, 2);
+        } else {
+            $metric->total_cml_percentage = 0;
+        }
+    
+        // Payroll %
+        if ($metric->total_current_year_sale != 0) {
+            $metric->total_payroll_percentage = round(
+                (($metric->total_payrolls + $metric->total_payroll_tax) / $metric->total_current_year_sale) * 100,
+                2
+            );
+        } else {
+            $metric->total_payroll_percentage = 0;
+        }
+    }
+
 
         // Calculate overall averages & totals
         $average_ndcp = round($weeklyMetrics->avg('total_ndcp_percentage'), 2);

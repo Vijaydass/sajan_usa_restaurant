@@ -29,5 +29,6 @@ class Deposit extends Model
         'comments',
         'deposited_by',
         'date',
+        'created_at',
     ];
 }
